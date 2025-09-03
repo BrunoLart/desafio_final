@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DesafiosVetores</title>
+    <link rel="stylesheet" href="../../../../assets/css/config.css">
+    <script src="js/validaproc.js"></script>
+</head>
+
+<body>
+    <section>
+        <!--Alimentar uma matriz (3x3) de valores inteiros,
+multiplicando essa matriz por um valor informado pelo
+usuário e escrevendo o conteúdo da matriz multiplicada.-->>
+        <h2>Atividade1 - Matriz (3x3)</h2>
+
+        <form name="frmnumint" action="#" method="get" onsubmit="return validaProc()">
+            <fieldset class="cadVetor">
+                <legend>Entrada de dados</legend>
+                
+                <!-- Primeira linha -->
+                <div>
+                    <label for="elemento00">Elemento [0,0]:</label>
+                    <input type="number" id="elemento00" required>
+                </div>
+                <div>
+                    <label for="elemento01">Elemento [0,1]:</label>
+                    <input type="number" id="elemento01" required>
+                </div>
+                <div>
+                    <label for="elemento02">Elemento [0,2]:</label>
+                    <input type="number" id="elemento02" required>
+                </div>
+
+                <!-- Segunda linha -->
+                <div>
+                    <label for="elemento10">Elemento [1,0]:</label>
+                    <input type="number" id="elemento10" required>
+                </div>
+                <div>
+                    <label for="elemento11">Elemento [1,1]:</label>
+                    <input type="number" id="elemento11" required>
+                </div>
+                <div>
+                    <label for="elemento12">Elemento [1,2]:</label>
+                    <input type="number" id="elemento12" required>
+                </div>
+
+                <!-- Terceira linha -->
+                <div>
+                    <label for="elemento20">Elemento [2,0]:</label>
+                    <input type="number" id="elemento20" required>
+                </div>
+                <div>
+                    <label for="elemento21">Elemento [2,1]:</label>
+                    <input type="number" id="elemento21" required>
+                </div>
+                <div>
+                    <label for="elemento22">Elemento [2,2]:</label>
+                    <input type="number" id="elemento22" required>
+                </div>
+
+                <!-- Multiplicador -->
+                <div>
+                    <label for="multiplicador">Multiplicador:</label>
+                    <input type="number" id="multiplicador" required>
+                </div>
+
+                <button type="submit">Calcular</button>
+            </fieldset>
+        </form>
+        
+        <div id="resultado" class="resultado"></div>
+    </section>
+</body>
+
+</html>

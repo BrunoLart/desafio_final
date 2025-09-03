@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estrutura enquanto JavaScript - Atividade 2</title>
+    <link rel="stylesheet" href="../../../../assets/css/config.css">
+    <script>
+    function validaProc(){
+        let i = 1;
+        let multiplos = [];
+        let soma = 0;
+        
+        while(i <= 50) {
+            if(i % 2 === 0) {
+                multiplos.push(i);
+                soma += i;
+            }
+            i++;
+        }
+        
+        // Remove resultado anterior se existir
+        if (document.getElementById('resultado')) {
+            document.getElementById('resultado').remove();
+        }
+        
+        // Cria div de resultado
+        const resultadoDiv = document.createElement('div');
+        resultadoDiv.id = 'resultado';
+        resultadoDiv.style.marginTop = '1rem';
+        resultadoDiv.style.padding = '1rem';
+        resultadoDiv.style.backgroundColor = '#f8f7ff';
+        resultadoDiv.style.border = '1px solid #e5e7eb';
+        resultadoDiv.style.borderRadius = '0.75rem';
+        resultadoDiv.style.textAlign = 'left';
+        resultadoDiv.style.color = '#4b5563';
+        
+        // Monta o HTML do resultado
+        let html = '<strong>Números pares de 1 a 50:</strong><br><br>';
+        html += '<div style="font-family: monospace;">';
+        html += multiplos.join(', ');
+        html += '</div><br>';
+        
+        html += '<strong>Soma dos números pares:</strong><br>';
+        html += '<div style="font-family: monospace;">';
+        html += multiplos.join(' + ') + ' = ' + soma;
+        html += '</div>';
+        
+        resultadoDiv.innerHTML = html;
+        document.querySelector('fieldset').appendChild(resultadoDiv);
+        return false;
+    }
+
+    function procFormulario(){
+        if(document.getElementById('numint').value=="") {
+            alert("Preencha o campo Número inteiro");
+            document.frmnumint.focus();
+            return false;
+        } else {
+            let numint = parseInt(document.getElementById('numint').value);
+            let resultado = "";
+            
+            switch (true) {
+                case(numint >= 0 && numint <= 3):
+                    resultado = "Bebê";
+                    break;
+                case(numint >= 4 && numint <= 10):
+                    resultado = "Criança";
+                    break;
+                case(numint >= 11 && numint <= 18):
+                    resultado = "Adolescente";
+                    break;
+                default:
+                    resultado = "Adulto";
+                    break;
+            }
+
+            // Mostra o resultado na página
+            if (document.getElementById('resultado')) {
+                document.getElementById('resultado').remove();
+            }
+            
+            const resultadoDiv = document.createElement('div');
+            resultadoDiv.id = 'resultado';
+            resultadoDiv.style.marginTop = '1rem';
+            resultadoDiv.style.padding = '1rem';
+            resultadoDiv.style.backgroundColor = '#f8f7ff';
+            resultadoDiv.style.border = '1px solid #e5e7eb';
+            resultadoDiv.style.borderRadius = '0.75rem';
+            resultadoDiv.style.textAlign = 'center';
+            resultadoDiv.style.color = '#4b5563';
+            resultadoDiv.innerHTML = `<strong>Classificação:</strong> ${resultado}`;
+            
+            document.querySelector('fieldset').appendChild(resultadoDiv);
+            return false;
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <section>
+        <h2>Estrutura Enquanto (Atividade 2)</h2>
+        <font face="arial">
+            <form name="frmnumint" action="#" method="get" onsubmit="return procFormulario()">
+                <fieldset class="cadnumint">
+                    <legend>Entrada de dados</legend>
+                    <br>
+                    <label for="numint">Informe um número inteiro :</label>
+                    <input type="text" name="txtnumint" id="numint"><br><br>
+                    <button type="reset">Limpar</button><button type="submit">Enviar</button>
+                </fieldset>
+            </form>
+        </font>
+    </section>
+</body>
+
+</html>

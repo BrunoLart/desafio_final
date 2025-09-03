@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EstruturaFacaEnquanto</title>
+    <link rel="stylesheet" href="../../../../assets/css/config.css">
+    <script>
+    function validaProc(){
+        let tabuadaInput = document.getElementById('tabuada');
+        
+        if(tabuadaInput.value === "") {
+            alert("Por favor, informe um número para a tabuada");
+            tabuadaInput.focus();
+            return false;
+        }
+        
+        let numero = parseInt(tabuadaInput.value);
+        if(isNaN(numero)) {
+            alert("Por favor, informe um número válido");
+            tabuadaInput.focus();
+            return false;
+        }
+        
+        let i = 1;
+        let resultados = [];
+        
+        // Calcula a tabuada usando do-while
+        do {
+            resultados.push({
+                multiplicador: i,
+                resultado: numero * i
+            });
+            i++;
+        } while(i <= 10);
+        
+        // Remove resultado anterior se existir
+        if (document.getElementById('resultado')) {
+            document.getElementById('resultado').remove();
+        }
+        
+        // Cria div de resultado
+        const resultadoDiv = document.createElement('div');
+        resultadoDiv.id = 'resultado';
+        resultadoDiv.style.marginTop = '1rem';
+        resultadoDiv.style.padding = '1rem';
+        resultadoDiv.style.backgroundColor = '#f8f7ff';
+        resultadoDiv.style.border = '1px solid #e5e7eb';
+        resultadoDiv.style.borderRadius = '0.75rem';
+        resultadoDiv.style.textAlign = 'left';
+        resultadoDiv.style.color = '#4b5563';
+        
+        // Monta o HTML do resultado
+        let html = `<strong>Tabuada do ${numero}:</strong><br><br>`;
+        html += '<div style="font-family: monospace;">';
+        
+        // Mostra a tabuada
+        resultados.forEach(item => {
+            html += `${numero} × ${item.multiplicador} = ${item.resultado}<br>`;
+        });
+        html += '</div>';
+        
+        resultadoDiv.innerHTML = html;
+        document.querySelector('fieldset').appendChild(resultadoDiv);
+        return false;
+    }
+    </script>
+</head>
+
+<body>
+    <section>
+        <h2>Atividade2 - Tabuada</h2>
+        <font face="arial">
+
+            <form name="frmnumint" action="#" method="get" onsubmit="return validaProc()">
+                <fieldset class="cadEnquanto">
+
+                    <legend>Entrada de dados</legend>
+                    <br>
+                     <label for="tabuada">Tabuada de</label>
+                    <input type="text" name="txttabuada" id="tabuada">
+                    <br>
+                    <br>
+                    <button type="submit">Enviar</button><button type="reset">Limpar</button>
+
+                </fieldset>
+            </form>
+        </font>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prática JavaScript - SENAI</title>
+    <link rel="stylesheet" href="../../../styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container" id="navbar" >
+        <!-- Navbar superior -->
+    </div>
+    <main class="main-content">
+    <!-- content-card removido -->
+        <div id="code-viewer-container" style="display: flex; align-items: flex-start; justify-content: center; gap: 2rem; margin: 1.2rem 0 0 0;">
+            <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 0.5rem;">
+                <button id="btn-texto" title="Ver Texto" style="background: rgba(124,58,237,0.7); border: none; border-radius: 0.7rem; padding: 1rem; cursor: pointer;">
+                    <i class="fa-regular fa-clipboard" style="color: #fff; font-size: 2rem;"></i>
+                </button>
+                <button id="btn-html" title="Ver HTML" style="background: rgba(124,58,237,0.7); border: none; border-radius: 0.7rem; padding: 1rem; cursor: pointer;"><i class="fa-brands fa-html5" style="color: #fff; font-size: 2rem;"></i></button>
+                <button id="btn-css" title="Ver CSS" style="background: rgba(124,58,237,0.7); border: none; border-radius: 0.7rem; padding: 1rem; cursor: pointer;"><i class="fa-brands fa-css3-alt" style="color: #fff; font-size: 2rem;"></i></button>
+                <button id="btn-js" title="Ver JS" style="background: rgba(124,58,237,0.7); border: none; border-radius: 0.7rem; padding: 1rem; cursor: pointer;"><i class="fa-brands fa-js" style="color: #fff; font-size: 2rem;"></i></button>
+            </div>
+            <textarea id="code-viewer" rows="18" cols="70" readonly style="resize: none; border-radius: 1rem; border: 1px solid #e5e7eb; background: #fff; color: #181028; font-family: 'Fira Mono', 'Consolas', monospace; font-size: 1.1rem; padding: 1.2rem; line-height: 1.7; letter-spacing: 0.03em; font-weight: 500; box-shadow: 0 2px 8px 0 #e5e7eb;"></textarea>
+        </div>
+        <div id="iframe-container" style="display:none; justify-content: center; margin: 1.2rem 0;">
+            <iframe id="iframe-exec" src="index.html" style="width: 800px; height: 500px; border-radius: 1rem; border: 1px solid #e5e7eb; background: #fff; box-shadow: 0 2px 8px 0 #e5e7eb; padding: 0.5rem;"></iframe>
+        </div>
+    </main>
+    <style>
+    #code-viewer::-webkit-scrollbar {
+        width: 10px;
+        background: #ede9fe;
+        border-radius: 1rem;
+    }
+    #code-viewer::-webkit-scrollbar-thumb {
+        background: #7c3aed;
+        border-radius: 1rem;
+    }
+    #code-viewer {
+        scrollbar-width: thin;
+        scrollbar-color: #7c3aed #ede9fe;
+    }
+    </style>
+    <script src="../../../script.js"></script>
+    <div class="button" style="text-align: center; margin-top: 1.5rem;">
+        <input type="button" value="Executar Página" id="btn-executar" style="background: rgba(124,58,237,0.85); color: #fff; border: none; border-radius: 0.7rem; padding: 0.8rem 2.2rem; font-size: 1.2rem; font-weight: 600; box-shadow: 0 2px 8px 0 #e5e7eb; cursor: pointer; transition: background 0.2s;">
+    </div>
+    <style>
+    #btn-executar:hover {
+        background: rgba(124,58,237,1);
+        color: #ede9fe;
+        box-shadow: 0 4px 16px 0 #c4b5fd;
+    }
+    </style>
+    <script>
+    // Alterna entre mostrar o iframe e o code viewer, mudando o texto do botão
+    function alternarExecucao() {
+        var iframeContainer = document.getElementById('iframe-container');
+        var codeViewerContainer = document.getElementById('code-viewer-container');
+        var btn = document.getElementById('btn-executar');
+        var contentCard = document.getElementById('content-card');
+        var iframe = document.getElementById('iframe-exec');
+        if (btn.value === 'Executar Página') {
+            if (contentCard) contentCard.style.display = 'none';
+            iframeContainer.style.display = 'flex';
+            codeViewerContainer.style.display = 'none';
+            if (iframe) iframe.src = 'index.html';
+            btn.value = 'Voltar';
+        } else {
+            iframeContainer.style.display = 'none';
+            codeViewerContainer.style.display = 'flex';
+            if (contentCard) contentCard.style.display = '';
+            btn.value = 'Executar Página';
+        }
+    }
+
+    // Função para buscar e mostrar código nos botões
+    async function fetchAndShow(file, lang) {
+        const textarea = document.getElementById('code-viewer');
+        textarea.value = 'Carregando...';
+        try {
+            const response = await fetch(file);
+            if (!response.ok) throw new Error('Erro ao carregar o arquivo');
+            let text = await response.text();
+            // Opcional: destacar sintaxe básica
+            textarea.value = text;
+        } catch (e) {
+            textarea.value = 'Erro ao carregar o arquivo.';
+        }
+    }
+    const textoExplicativo = `Estrutura ENQUANTO - Soma de Múltiplos de 5\n\nEsta atividade trabalha com a estrutura WHILE para processar números com condições específicas:\n\n1. Solicita 3 números ao usuário\n2. Para cada número:\n   • Valida se é positivo\n   • Verifica se é múltiplo de 5\n   • Se for múltiplo de 5, adiciona à soma total\n3. Exibe a soma final dos múltiplos de 5\n\nConceitos abordados:\n- Loop while com contador\n- Validação de números negativos\n- Operador módulo (%) para verificar múltiplos\n- Acumulação de valores\n- Tratamento de entrada inválida com alert()\n- Output no console\n\nObservações:\n- Números negativos são rejeitados\n- Apenas múltiplos de 5 são somados\n- O loop continua até receber 3 números válidos`;
+    document.getElementById('code-viewer').value = textoExplicativo;
+    document.getElementById('btn-texto').onclick = function() {
+        document.getElementById('code-viewer').value = textoExplicativo;
+    };
+    document.getElementById('btn-html').onclick = function() {
+        fetchAndShow('../../../estruturaEnquanto/atividade3/index.html', 'html');
+    };
+    document.getElementById('btn-css').onclick = function() {
+        fetchAndShow('../../../estruturaEnquanto/atividade3/css/config.css', 'css');
+    };
+    document.getElementById('btn-js').onclick = function() {
+        fetchAndShow('../../../estruturaEnquanto/atividade3/js/validaproc.js', 'js');
+    };
+    // Adiciona o evento ao botão de executar/voltar
+    document.getElementById('btn-executar').onclick = alternarExecucao;
+    </script>
+</body>
+</html>

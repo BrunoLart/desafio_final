@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EstruturaFacaEnquanto</title>
+    <link rel="stylesheet" href="../../../../assets/css/config.css">
+    <script>
+    function validaProc(){
+        let somatoria = 0;
+        let resposta;
+        let historico = [];
+
+        do {
+            let numero = parseInt(prompt("Digite o número : "));
+            if (!isNaN(numero)) {
+                historico.push(numero);
+                somatoria += numero;
+            }
+            resposta = parseInt(prompt("Para sair digite o número 0 ou outro para continuar :"));
+        } while(resposta != 0);
+
+        // Remove resultado anterior se existir
+        if (document.getElementById('resultado')) {
+            document.getElementById('resultado').remove();
+        }
+        
+        // Cria div de resultado
+        const resultadoDiv = document.createElement('div');
+        resultadoDiv.id = 'resultado';
+        resultadoDiv.style.marginTop = '1rem';
+        resultadoDiv.style.padding = '1rem';
+        resultadoDiv.style.backgroundColor = '#f8f7ff';
+        resultadoDiv.style.border = '1px solid #e5e7eb';
+        resultadoDiv.style.borderRadius = '0.75rem';
+        resultadoDiv.style.textAlign = 'left';
+        resultadoDiv.style.color = '#4b5563';
+        
+        // Monta o HTML do resultado
+        let html = '<strong>Resultado:</strong><br>';
+        html += '<div style="margin-top: 0.5rem;">';
+        html += `<div>Números informados: ${historico.join(', ')}</div>`;
+        html += `<div style="margin-top: 0.5rem;"><strong>Somatória:</strong> ${somatoria}</div>`;
+        html += '</div>';
+        
+        resultadoDiv.innerHTML = html;
+        document.querySelector('fieldset').appendChild(resultadoDiv);
+        return false;
+    }
+    </script>
+</head>
+
+<body>
+    <section>
+        <h2>Atividade1 - Somatória de números</h2>
+        <font face="arial">
+
+            <form name="frmnumint" action="#" method="get" onsubmit="return validaProc()">
+                <fieldset class="cadEnquanto">
+
+                    <legend>Entrada de dados</legend>
+                    <br>
+
+                    <button type="submit">Enviar</button>
+
+                </fieldset>
+            </form>
+        </font>
+    </section>
+</body>
+
+</html>

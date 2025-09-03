@@ -1,0 +1,106 @@
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    background-color: #f8fafc;
+    margin: 0;
+    padding: 2rem;
+    color: #1e293b;
+}
+
+section {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+h2 {
+    color: #1e293b;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+fieldset.cadnumint, .cadmedialuno1, .cadVetor {
+    border: 1px solid #e5e7eb;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    background: #fff;
+    box-shadow: 0 2px 8px 0 #e5e7eb;
+    margin-bottom: 1rem;
+    width: auto;
+}
+
+legend {
+    color: #4b5563;
+    font-weight: 500;
+    padding: 0 0.75rem;
+    font-size: 1.1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.75rem;
+    color: #4b5563;
+    font-weight: 500;
+    float: none;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: #1e293b;
+    transition: all 0.2s;
+    background-color: #f8fafc;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #7c3aed;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    background-color: #fff;
+}
+
+button {
+    background: rgba(124,58,237,0.85);
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 0.75rem;
+    font-size: 1rem;
+    transition: all 0.2s;
+    box-shadow: 0 2px 4px 0 rgba(124, 58, 237, 0.1);
+    width: auto;
+}
+
+button:hover {
+    background: rgba(124,58,237,1);
+    box-shadow: 0 4px 8px 0 rgba(124, 58, 237, 0.2);
+    transform: translateY(-1px);
+}
+
+button[type="reset"] {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+button[type="reset"]:hover {
+    background: #e2e8f0;
+    color: #475569;
+}
+
+#resultado {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #f8f7ff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    text-align: center;
+    color: #4b5563;
+    font-weight: 500;
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estrutura Se JavaScript - Atividade 2</title>
+  <link rel="stylesheet" href="../../../../assets/css/config.css">
+  <script>
+    function procFormulario(){
+        if(document.getElementById('numint').value=="") {
+            alert("Preencha o campo Número inteiro");
+            document.frmnumint.focus();
+            return false;
+        } 
+        
+        let num = parseInt(document.getElementById('numint').value);
+        
+        let mensagem;
+        if(num < 0) {
+            mensagem = "O número é negativo";
+        } else if(num > 0) {
+            mensagem = "O número é positivo";
+        } else {
+            mensagem = "O número é zero";
+        }
+        
+        // Remove resultado anterior se existir
+        if (document.getElementById('resultado')) {
+            document.getElementById('resultado').remove();
+        }
+        
+        // Cria div de resultado
+        const resultadoDiv = document.createElement('div');
+        resultadoDiv.id = 'resultado';
+        resultadoDiv.style.marginTop = '1rem';
+        resultadoDiv.style.padding = '1rem';
+        resultadoDiv.style.backgroundColor = '#f8f7ff';
+        resultadoDiv.style.border = '1px solid #e5e7eb';
+        resultadoDiv.style.borderRadius = '0.75rem';
+        resultadoDiv.style.color = '#4b5563';
+        resultadoDiv.style.textAlign = 'center';
+        
+        resultadoDiv.innerHTML = `<strong>${mensagem}</strong>`;
+        document.querySelector('fieldset').appendChild(resultadoDiv);
+        return false;
+    }
+  </script>
+</head>
+
+<body>
+  <section>
+    <h2>Estrutura Se (Atividade 2)</h2>
+    <font face="arial">
+      <form name="frmnumint" action="#" method="get" onsubmit="return procFormulario()">
+        <fieldset class="cadnumint">
+          <legend>Entrada de dados</legend>
+          <br>
+          <label for="numint">Informe um número inteiro :</label>
+          <input type="text" name="txtnumint" id="numint"><br><br>
+          <button type="reset">Limpar</button><button type="submit">Enviar</button>
+        </fieldset>
+      </form>
+    </font>
+  </section>
+</body>
+
+</html>
